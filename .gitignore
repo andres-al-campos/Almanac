@@ -1,0 +1,15 @@
+# Build output
+build/
+
+# Local signing config (per-machine; never commit your team ID)
+Config.xcconfig
+
+# Xcode
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+DerivedData/
+.DS_Store
+
+# Claude Code machine-specific permissions
+.claude/settings.local.json
