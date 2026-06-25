@@ -1,109 +1,79 @@
-# Project Almanac
+# Almanac
 
-Automated iOS app for STRC and SATA dividend buy date notifications.
+An iOS app that notifies you when to buy STRC to capture its dividend.
 
-## Overview
+## What it does
 
-Project Almanac calculates optimal buy dates for monthly dividend capture strategies on STRC and SATA preferred stocks. The app schedules local notifications at market open (9:30 AM ET) on the day you need to buy to receive the dividend.
+STRC pays a dividend twice a month. To receive it you have to hold the stock
+through the ex-dividend date, which means buying by a specific day that shifts
+around weekends and NYSE holidays. Almanac computes those buy dates and schedules
+local notifications at 9:30 AM ET (market open) on each one, so you don't have to
+track the calendar yourself.
 
-## Features
+It's offline, has no dependencies, and once you refresh notifications it runs on
+its own.
 
-- 🔔 Notifications at 9:30 AM ET (market open) on buy dates
-- 📅 STRC: 15th-of-month ex-dividend schedule
-- 📅 SATA: End-of-month ex-dividend schedule
-- ⚙️ Automatic weekend/holiday adjustments using official NYSE calendar
-- 🔄 Schedules 2 years of notifications automatically
-- 📱 Fully offline, no internet required
-- 🌾 Set it and forget it - "harvesting yields" on schedule
+## STRC's two monthly dates
 
-## How It Works
+STRC has two record dates each month:
 
-### Date Calculation Logic
+1. The **15th** of the month.
+2. The **1st of the following month**.
 
-1. **Record Date**: Declared dividend date (15th for STRC, last day for SATA)
-2. **Weekend/Holiday Adjustment**: Shifts to previous business day if needed
-3. **Ex-Dividend Date**: 1 business day before record date (T+1 settlement)
-4. **Buy Date**: 1 business day before ex-div ← **You get notified here**
+For each, Almanac walks back to the buy date:
 
-**Example:**
-- STRC dividend record date: 15th (Saturday)
-- Adjusted record date: Friday 14th
-- Ex-div date: Thursday 13th
-- **Buy date notification: Wednesday 12th at 9:30 AM ET**
+1. **Record date** → if it's a weekend or NYSE holiday, shift to the prior trading day.
+2. **Ex-dividend date** = the record date under T+1 settlement (or the prior trading day if the record date isn't a trading day).
+3. **Buy date** = the trading day before ex-div. **This is when you're notified.**
 
-### NYSE Calendar
+Example: a record date of Saturday the 15th shifts to Friday the 14th (ex-div),
+so the buy-date notification fires Thursday the 13th at 9:30 AM ET.
 
-Includes official market holidays through 2028:
-- All federal holidays + Good Friday
-- Data sourced from NYSE official announcements
+The NYSE holiday calendar is built in through 2028 (federal holidays plus Good
+Friday). When the NYSE publishes 2029+ dates, add them to the `nyseHolidays`
+array in `Almanac/Models/TradingCalendar.swift`.
 
-## Installation
+> SATA was previously tracked too, but it switched to daily dividend payments —
+> every trading day is an ex-div day, so there's no buy date to time. It was
+> removed.
 
-### Quick Start
+## Build & install
 
-1. Install SideStore or AltStore on your iPhone
-2. Open `Almanac.xcodeproj` in Xcode
-3. Change Bundle Identifier to something unique (e.g., `com.yourname.almanac`)
-4. Build and export IPA
-5. Sideload via SideStore/AltStore
-6. Open app, grant notifications, done!
+The app installs to your own iPhone via a single script. You need Xcode's
+command-line tools and an Apple ID signed in to Xcode (a free account works).
 
-See `QUICKSTART.md` for detailed step-by-step instructions.
-
-### First Launch
-
-1. Tap "Refresh Notifications"
-2. Grant notification permission
-3. App schedules 48 notifications (2 years × 24 per year)
-4. Close app - notifications are set!
-
-## Usage
-
-- Notifications fire at 9:30 AM ET (auto-converts to your timezone)
-- Open app once per year to refresh (or when prompted)
-- Check "Next STRC Buy" and "Next SATA Buy" anytime
-
-## Architecture
-
-```
-Almanac/
-├── Models/
-│   └── TradingCalendar.swift      # Holiday calendar & date calculations
-├── Managers/
-│   └── NotificationManager.swift  # Notification scheduling
-└── Views/
-    └── ContentView.swift          # UI
+```bash
+cp Config.xcconfig.example Config.xcconfig   # then set DEVELOPMENT_TEAM to your Apple Team ID
+./build.sh                                   # build, sign, and install to the connected iPhone
 ```
 
-## Maintenance
+`Config.xcconfig` is gitignored, so your team ID stays local. Find your Team ID
+in Xcode → Settings → Accounts → your team. Connect your iPhone via USB (unlocked)
+or pair it over Wi-Fi in Xcode → Window → Devices and Simulators.
 
-### Yearly Refresh
+`./build.sh -h` lists the flags (`--no-install` to build without deploying,
+`--device <id>` to target a specific phone, `-v` for verbose output).
 
-Open app once in January to keep notifications fresh for next 2 years.
+A free-account signature expires after about 7 days. Re-run `./build.sh` to renew
+it, or use [ReSign](../ReSign) to renew automatically.
 
-### Future Holiday Updates
+## First launch
 
-When NYSE publishes 2029+ holidays:
-1. Edit `TradingCalendar.swift`
-2. Add new dates to `nyseHolidays` array
-3. Rebuild and reinstall
+Tap **Refresh Notifications** and grant permission. The app schedules 60
+notifications (10 months × 2 STRC dates × 3 reminders each: buy date, approaching
+close, and sell window). Reopen it every few months to extend the window.
 
-## Technical Details
+## Requirements
 
-- **iOS 15.0+** required
-- **64 local notifications** max (we use 48)
-- **SwiftUI** interface
-- **No external dependencies**
-- **Offline-first** architecture
+- iOS 15.0+
+- SwiftUI, no external dependencies
+- Stays under the iOS 64-notification limit (uses 60)
 
 ## License
 
-MIT - Do whatever you want
+MIT.
 
 ## Disclaimer
 
-This app calculates dates based on declared schedules and NYSE calendar. Always verify ex-dividend dates with official sources before trading.
-
----
-
-**Project Almanac** - Harvesting yields on schedule since 2026 🌾
+Almanac computes dates from STRC's declared schedule and the NYSE calendar.
+Verify ex-dividend dates against official sources before trading.

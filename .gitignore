@@ -13,3 +13,13 @@ DerivedData/
 
 # Claude Code machine-specific permissions
 .claude/settings.local.json
+
+# Editor settings
+.vscode/
+
+# One-shot icon-install scaffolding (the decoded icon_1024.png is what ships)
+Almanac/Assets.xcassets/AppIcon.appiconset/icon_1024_b64.txt
+Almanac/Assets.xcassets/AppIcon.appiconset/install_icon.sh
+
+# Stale standalone quickstart — install lives in the README now
+QUICKSTART.md
