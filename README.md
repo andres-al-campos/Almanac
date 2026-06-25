@@ -55,7 +55,7 @@ or pair it over Wi-Fi in Xcode → Window → Devices and Simulators.
 `--device <id>` to target a specific phone, `-v` for verbose output).
 
 A free-account signature expires after about 7 days. Re-run `./build.sh` to renew
-it, or use [ReSign](../ReSign) to renew automatically.
+it, or use [ReSign](https://github.com/Id3arium/ReSign) to renew automatically.
 
 ## First launch
 
