@@ -36,7 +36,7 @@ do not start it as a side effect of another task.
 ## build.sh is generated
 
 `build.sh` comes from `walled_garden/_template/ios-build.sh`. A bug in it is a bug
-in the template: fix it there and run `walled_garden/sync-build-scripts.sh`,
+in the template: fix it there and run `walled_garden/_template/sync-build-scripts.sh`,
 rather than patching this copy and letting the three projects drift apart again.
 `sync-build-scripts.sh --check` reports drift without writing.
 
