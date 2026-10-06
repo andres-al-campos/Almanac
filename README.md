@@ -71,7 +71,7 @@ close, and sell window). Reopen it every few months to extend the window.
 
 ## License
 
-MIT.
+AGPL-3.0. See [LICENSE](LICENSE).
 
 ## Disclaimer
 
