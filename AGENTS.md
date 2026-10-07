@@ -30,7 +30,7 @@ newer ones, which use xcodegen and a `project.yml`. `MARKETING_VERSION` in
 `release.sh` reads it from there.
 
 Converting to xcodegen would let this project adopt
-`~/Projects/Code/ios-template` wholesale. That is a real change, not a cleanup —
+`~/Projects/Code/tooling/ios-template` wholesale. That is a real change, not a cleanup —
 do not start it as a side effect of another task.
 
 ## build.sh is generated
