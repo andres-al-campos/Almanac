@@ -1,5 +1,7 @@
 # Almanac
 
+Updated 2026-10-22 23:44, at 1.0.
+
 An iOS app that notifies you when to buy STRC to capture its dividend.
 
 ## What it does
@@ -53,6 +55,7 @@ or pair it over Wi-Fi in Xcode → Window → Devices and Simulators.
 
 `./build.sh -h` lists the flags (`--no-install` to build without deploying,
 `--device <id>` to target a specific phone, `-v` for verbose output).
+`./build.sh check` runs the checks in `laws/` and `drive/` without building.
 
 A free-account signature expires after about 7 days. Re-run `./build.sh` to renew
 it, or use [ReSign](https://github.com/andres-al-campos/ReSign) to renew automatically.
