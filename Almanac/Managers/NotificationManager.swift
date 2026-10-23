@@ -50,7 +50,7 @@ class NotificationManager {
                     exDivDate: dates.exDivDate,
                     identifier: "STRC-\(year)-\(month)-\(slot)"
                 )
-                scheduleApproachingCloseNotification(for: dates.exDivDate, ticker: "STRC", identifier: "STRC-\(year)-\(month)-\(slot)-close")
+                scheduleApproachingCloseNotification(for: dates.buyDate, ticker: "STRC", identifier: "STRC-\(year)-\(month)-\(slot)-close")
                 scheduleExtendedHoursClosedNotification(for: dates.exDivDate, ticker: "STRC", identifier: "STRC-\(year)-\(month)-\(slot)-exthours")
                 notifications += 3
             }
@@ -107,10 +107,11 @@ class NotificationManager {
         }
     }
     
-    // 3:55 PM ET on ex-div date — last chance to buy during regular hours
-    private func scheduleApproachingCloseNotification(for exDivDate: Date, ticker: String, identifier: String) {
+    // 3:55 PM ET on the buy date — last chance to buy during regular hours. Not the
+    // ex-div date: a buy that day settles after the record date and misses the dividend.
+    private func scheduleApproachingCloseNotification(for buyDate: Date, ticker: String, identifier: String) {
         let calendar = Calendar.current
-        var dateComponents = calendar.dateComponents([.year, .month, .day], from: exDivDate)
+        var dateComponents = calendar.dateComponents([.year, .month, .day], from: buyDate)
         dateComponents.hour = 15
         dateComponents.minute = 55
         dateComponents.timeZone = TimeZone(identifier: "America/New_York")
