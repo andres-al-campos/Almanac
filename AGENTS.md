@@ -4,7 +4,7 @@ A person comes to Almanac so they never miss the day to buy STRC for a
 dividend: the phone tells them that morning, and again when they can sell,
 without them watching the calendar.
 
-What a user can do, and the checks for each, are in `features/`. The
+What a user can do, and the checks for each, are in `dev/features/`. The
 walled_garden `AGENTS.md` Principles hold here too.
 
 ## Building
@@ -17,8 +17,8 @@ point — prefer it over raw `xcodebuild`, and never build by driving the Xcode 
 ./build.sh --no-install build and sign only (use this to check it compiles)
 ./build.sh --device <id> target a specific device
 ./build.sh -v           verbose xcodebuild output
-./build.sh check        run the laws in laws/ and every drive, no build
-./build.sh drive [name] run every feature check in drive/, or one
+./build.sh check        run the laws in tests/ and every drive, no build
+./build.sh drive [name] run every feature check in tests/drive/, or one
 ```
 
 The no-arg path leaves the app installed on the phone rather than stopping at a

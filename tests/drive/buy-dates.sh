@@ -1,6 +1,6 @@
 #!/bin/bash
 # Drive: the buy-date math, by AlmanacTests in an iOS simulator. Needs no phone.
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/../.."
 
 # An iPhone on the newest iOS runtime, by id: a destination by name picks a runtime
 # that may not match the SDK, and xcodebuild then finds no device at all.

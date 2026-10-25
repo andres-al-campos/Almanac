@@ -1,6 +1,6 @@
 # Buy dates
 
-Updated 2026-10-23 00:00, at 1.0.
+Updated 2026-10-25 11:38, at 1.0.
 
 The days to buy STRC to receive each of its two monthly dividends, with the
 ex-dividend date after each, so you know when to buy and when you can sell.

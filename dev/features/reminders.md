@@ -1,6 +1,6 @@
 # Reminders
 
-Updated 2026-10-23 00:00, at 1.0.
+Updated 2026-10-25 11:38, at 1.0.
 
 Notifications that tell you, on the day, to buy STRC and later that the sell
 window is open, so you don't have to watch the calendar.
