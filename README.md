@@ -1,7 +1,5 @@
 # Almanac
 
-Updated 2026-10-22 23:44, at 1.0.
-
 An iOS app that notifies you when to buy STRC to capture its dividend.
 
 ## What it does
