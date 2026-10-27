@@ -23,3 +23,7 @@ Almanac/Assets.xcassets/AppIcon.appiconset/install_icon.sh
 
 # Stale standalone quickstart — install lives in the README now
 QUICKSTART.md
+
+# Process, not product: mockups and per-quest plans stay on disk, off the remote
+designs/
+plans/
